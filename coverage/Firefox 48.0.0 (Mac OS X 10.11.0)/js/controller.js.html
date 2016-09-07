@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js/controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">js/</a> controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.24% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>20/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/20</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"> var app = angular.module("app", []);
+&nbsp;
+ app.controller('feedLoader', ['$scope','$http','$sce', function($scope,$http,$sce) {
+	$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+	$scope.message; //it keeps the error messages we get from our api or we generate in client side. We can show the error messages by calling showerror() function.
+	$scope.products = []; //it keeps all of the products data which we fetch from server
+	$scope.feedURL = "http://pf.tradetracker.net/?aid=1&amp;type=xml&amp;encoding=utf-8&amp;fid=251713&amp;categoryType=2&amp;additionalType=2&amp;limit=10";
+&nbsp;
+	$scope.submitFeed = function(){ //this function submits user's inserted feeds url to server and fetch the data if there is any
+		if($scope.feedURL != ""){
+			$('.loader').show();
+			$http.post("./api/ttAPI.php" , //this is the url of our api which processes the product urls
+				$.param({'feedsUrl': $scope.feedURL})
+			).success(function (data) {   //This function handles successful post request			
+				
+				$('.loader').hide();
+				if(data.status){ //if there are some products in the server response then show it in the view
+					$scope.products = data.products;
+&nbsp;
+				} else{ // if there is no product has been fetched by the server then show the error message which is sent by server.
+					$scope.message = data.error; 
+					$scope.showerror(5000);
+				}
+			
+			});
+		} else{ //show an error if there is no url in the input text.
+			$scope.message = "Please insert an xml file's url."; 
+			$scope.showerror(3000); //As the error message is shorter then user doesn't need so much time to read the error so we fade the error faster. 
+		}			
+	}
+	
+&nbsp;
+	$scope.showerror = function(delay){ //this function shows an error messages to user and hide it after the given delay time.
+		$(".error").css("opacity","1"); //show the error received from server to the user
+		setTimeout(<span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >$(".error").css("opacity","0"); </span>}, delay); //Fade out the error after a given number of seconds to not to bother user with always showing an error
+	}
+&nbsp;
+}]);</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Aug 28 2016 17:30:53 GMT+0800 (MYT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

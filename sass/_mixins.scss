@@ -1,0 +1,161 @@
+@import "compass/css3";
+
+//Colors
+
+$darkGrey:  #384047;
+$lightGrey: #EDEFF0;
+$fontBlack: #2D3339;
+$fontGrey: #7B8B8E;
+$blue: #4E91CE;
+
+//Fonts definitions
+
+@font-face {
+	font-family: "Gotham Rounded Medium";
+	font-style: normal;
+	src: url("../fonts/GothamRoundedMedium.ttf");
+}
+
+@font-face {
+	font-family: "Gotham Rounded Light";
+	font-style: normal;
+	src: url("../fonts/GothamRoundedLight.otf");
+}
+
+//Fonts Mixins
+
+@mixin mainFont($size,$color,$weight){
+	font-family: "Gotham Rounded Medium","Gotham Rounded Light",Helvetica,Arial,sans-serif;
+	font-size: $size;
+	color: $color;	
+	font-weight: $weight;
+}
+
+@mixin lightFont($size,$color,$weight){
+	font-family: "Gotham Rounded Light","Gotham Rounded Medium",Helvetica,Arial,sans-serif;
+	font-size: $size;
+	color: $color;	
+	font-weight: $weight;
+}
+
+@mixin smooth(){
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+
+//Media queries
+@mixin media($min:0px,$max:null) {
+	@if $max {
+		@media only screen and (min-width: $min) and (max-width: $max) {
+		    @content;
+		}
+	} 
+	@else{
+		@media only screen and (min-width: $min){
+		    @content;
+		}
+	}  
+}
+
+// links and anchors Mixins 
+
+@mixin links($color,$hoverColor){
+	text-decoration: none !important;
+	cursor: pointer;
+	outline: none;
+	color: $color;
+	@include hoverTransition(color);
+
+	&:hover, &:active, &:focus {
+      color: $hoverColor;   
+      outline: none;
+    }
+} 
+
+
+//Layout and boxes mixins
+
+@mixin boxes($radius,$color,$vpadding:10px,$hpadding:10px){
+	background-color: $color;
+	display: block;
+	padding: #{$vpadding} #{$hpadding};
+	box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+	@include border-radius($radius);
+}
+
+@mixin centerPosition($vmargin:0px,$maxwidth:null){
+	@if ($maxwidth){
+		max-width: $maxwidth;
+	}
+	position: relative;
+	margin: #{$vmargin} auto;
+}
+
+@mixin putInCenter(){
+	z-index: 100;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+//Form mixins
+
+@mixin inputText($radius,$border-color,$font-color){
+	border: 2px solid #{$border-color};
+	color: $font-color;
+	box-shadow: none;
+	height: 46px;
+
+	@include border-radius($radius);
+	@include lightFont(14px,$font-color,400);	
+	@include hoverTransition(border-color);
+
+	&:hover, &:active, &:focus {
+      border-color: darken($border-color, 10%);
+      outline:none;
+      box-shadow: none;
+    }
+}
+
+@mixin btns($radius,$border-color,$border-width,$font-color,$bg-color:white,$max-width:100%){
+	border: #{$border-width} solid #{$border-color};
+	color: $font-color;
+	background-color: $bg-color;
+	height: 46px;
+	box-shadow: none;
+
+	@include border-radius($radius);
+	@include mainFont(14px,$font-color,500);
+
+	&:hover, &:active, &:focus {
+      border-color: darken($border-color, 10%);
+      outline:none;
+      box-shadow: none;
+      background-color: $bg-color;
+    }	
+}
+
+//animation and transitions mixins
+
+@mixin hoverTransition($property:color,$duration:0.3s,$type:ease){
+	@include transition-property($property);
+	@include transition-delay(0s);
+  	@include transition-duration($duration);
+  	@include transition-timing-function($type);
+}
+
+@mixin textFader(){ //this mixin adds fading at the end of a text. Its good especially for long texts that we wanna trim for lack of space. 
+	&:after{ 
+	    position: absolute;
+	    bottom: 0;
+	    right: 0;
+	    height: 16px;
+	    width: 80px;
+	    content: "";
+	    background-image: -webkit-linear-gradient(left, rgba(255,255,255,0), #fff 60%, #fff);
+	    background-image: linear-gradient(to right, rgba(255,255,255,0), #fff 60%, #fff);
+	}
+}

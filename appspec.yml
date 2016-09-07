@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/inpactor.com/deployTest
+permissions:
+   - object: /var/www/htmlinpactor.com/deployTest
+     pattern: "**"
+     owner: pro1-ftp
+     group: www
+     mode: 755
+     type:
+       - file

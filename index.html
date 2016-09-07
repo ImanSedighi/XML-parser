@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Bootstrap: Latest compiled and minified CSS -->
+<link rel="stylesheet" href="./css/bootstrap3.3.7.min.css">	
+
+<link href='./css/style.css' rel='stylesheet' type='text/css'>
+
+<script src="./lib/jquery-1.12.4.min.js"></script>
+<script src="./lib/angular1.5.3/angular.min.js"></script>
+<script src="./js/controller.js"></script>
+
+<!-- Bootstrap: Latest compiled and minified JavaScript -->
+<script src="./lib/bootstrap3.3.7.min.js"></script>
+
+<!-- Title & Meta tag -->
+<title>Sample Product Feed </title>
+
+<meta name="description" content="This is a front-end test">
+<meta name="keywords" content="test">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Font-awesome icons -->
+<link rel="stylesheet" href="./css/font-awesome4.6.0.min.css">
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-81911254-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+		
+<body ng-app="app" ng-controller="feedLoader">
+
+<div id="root">
+    <div>
+   		<object type="image/svg+xml" data="svg/loader.svg" class="loader" style="display: none;"></object>
+		
+		<div id="header">
+			<div class="container">	
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="logo">
+						   	<a target="_self" href="http://www.theincitement.com/">
+								<object class="logo-svg" type="image/svg+xml" data="svg/logo.svg">
+									
+								</object>
+								<h1>Sample App&reg;</h1>								
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">	
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row centerBox">
+						<h2 class="col-xs-12">Submit your XML!</h2>
+						<p class="col-xs-12">To browse your xml feed's data, please insert the url of the feed of your choice here. To check our default feed's data, kindly submit the current url now!</p>
+						<div class="col-sm-8">
+						  <input type="url" class="form-control input-lg" ng-model="feedURL" id="xmlurl">
+						  <p class="error">
+						  	<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						  	<span ng-bind="message"></span>
+						  </p>
+						</div>
+						<div class="col-sm-4">
+						  <button type="submit" class="btn btn-default btn-lg" ng-click="submitFeed()">Submit Feed</button>
+						</div>
+					</div>
+
+					<div id="allProducts" class="row">
+						<div class="col-xs-12 col-sm-6" ng-repeat="product in products">
+							<div class="productBox">
+								<div class="boxHeader">
+									<span class="productID">
+										<span>#</span>
+										<span ng-bind="product.productID"> </span>
+									</span>
+								</div>
+								<div class="boxContainer">
+
+									<a class="imgContainer" target="_self" ng-href="{{product.productURL}}">
+										<img ng-src="{{product.imageURL}}" alt="{{product.name}}">
+									</a>
+
+									<div class="aboveHR">
+										<div class="aboveMobile">
+											<a target="_self" ng-href="{{product.productURL}}">
+												<h4 class="name" ng-bind="product.name"></h4>
+											</a>
+											<p class="price" ng-bind="product.currency+' '+product.price"></p>
+										</div>
+
+										<span class="category" ng-bind="product.categories"></span>
+										
+									</div>
+										<hr></hr>
+										<p class="description" ng-bind="product.description"></p>
+										
+										<a class="btn readMore" target="_self" ng-href="{{product.productURL}}">Learn more</a>
+								</div>
+
+							</div>
+						</div>	
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="footer">
+	<div id="footerContainer">
+		<div class="container">	
+			<div class="row">
+				<div class="col-xs-12">
+					<p>Designed and developed by <a target="_blank" href="http://www.imansedighi.com">Iman Sedighi</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

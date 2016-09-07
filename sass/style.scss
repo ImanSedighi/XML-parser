@@ -1,0 +1,273 @@
+@import "compass/layout.scss";
+
+@import "_mixins.scss";
+
+@include sticky-footer(45px);
+
+body{
+	background-color: $lightGrey;
+	font-feature-settings: normal;
+	font-kerning: auto;
+	font-language-override: normal;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+}
+
+a{
+	@include links($fontGrey,$fontGrey);
+}
+
+.zeroPadding{
+	padding: 0px !important;
+}
+
+#header{
+	background-color: $darkGrey;
+	padding: 4px 0px;
+
+	a{
+		display: inline-block;
+		height: 60px;
+		line-height: 60px;
+		@include links($fontGrey,white);
+		@include mainFont(40px,$fontGrey,500);
+
+		object{
+			display: inline-block;
+			float: left;
+			max-height: 60px;
+		}
+
+		h1{
+			display: inline-block;
+			font-size: 24px;
+		}
+	}
+	
+	svg{
+		max-height:50px;
+		max-width:200px;
+		margin: 5px 3px 0 0;
+
+		#logo{
+			width:45px;
+			@include mainFont(24px,$fontBlack,500);
+		}
+	}
+}
+
+.loader{
+	@include putInCenter();
+	
+}
+
+.centerBox{
+	@include boxes(4px,white,35px,15px);
+	@include centerPosition(50px); 
+
+	h2{
+		margin-bottom: 10px;
+		margin-top: 0px;
+		@include mainFont(20px,$fontBlack,500);
+	
+	}
+
+	p{
+		margin-bottom: 20px;
+		line-height: 1.5;
+		@include mainFont(14px,$fontGrey,500);	
+	}
+
+	.error{
+		@include lightFont(13px,#E15258,400);
+		margin-top: 10px; 
+		margin-bottom: 0px;
+		opacity: 0;
+		@include hoverTransition(opacity);	
+	}
+
+	input{
+		@include inputText(4px,$lightGrey,$darkGrey);
+	}
+
+	button{
+		@include btns(4px,$lightGrey,2px,$darkGrey);
+		@include hoverTransition($lightGrey);
+
+
+		@include media(0px,767px){
+			margin-top:15px;
+		}
+	}
+}
+
+.productBox{
+	margin-bottom: 30px;
+	@include boxes(4px,white,0px,0px);	
+
+	@include media(430px,767px){
+		@include centerPosition(15px,400px);
+	}
+	
+	.boxHeader{
+		height: 50px;
+		line-height: 50px;
+		padding: 0px 30px;
+		background-color: $blue;
+		@include border-top-left-radius(4px);
+		@include border-top-right-radius(4px);
+
+		@include media(0px,400px){
+			padding: 0px 20px;
+		}
+
+		span{
+			@include mainFont(14px,white,400);
+		}
+	}
+
+	.boxContainer{
+		padding: 25px 30px;
+		@include media(0px,400px){
+			padding: 25px 20px;
+		}
+		
+		.aboveHR{
+			@include media(1200px){
+				height: 150px;
+			}
+
+			.aboveMobile{
+				@include media(0px,1199px){
+					height: 130px;
+				}
+			}
+		}
+		
+	}
+	
+	.imgContainer{
+		float: left;
+		padding-right:15px;
+		height: 150px;
+
+		img{
+			max-width: 150px;
+
+			@include media(0px,1199px){
+				max-width: 120px;
+			}
+		}		
+		
+		@include media(0px,1199px){
+			height: 120px;
+		}
+	}
+
+	h4{
+		margin-top: 0px !important;		
+		overflow: hidden;
+	}
+
+	.name{
+		line-height: 1.5;
+		@include mainFont(14px,$fontGrey,400);	
+
+		@include media(768px,991px){
+			@include mainFont(13px,$fontGrey,400);	
+		}
+		@include media(0px,399px){
+			@include mainFont(13px,$fontGrey,400);	
+		}
+		@include media(400px,549px){
+			@include mainFont(13.5px,$fontGrey,400);	
+		}
+	}
+
+	.price{
+		@include mainFont(14px,$blue,400);
+
+	}
+
+	.description{
+		line-height: 1.4;
+		margin-bottom: 10px;
+		height: 55px;
+		overflow: hidden;
+		position: relative;
+
+		@include textFader();
+
+		@include lightFont(13px,$fontGrey,400);
+
+		@include media(768px,991px){
+			@include lightFont(12.5px,$fontGrey,400);
+			margin-top: 15px;	
+		}
+		@include media(0px,399px){
+			@include lightFont(12.5px,$fontGrey,400);
+			margin-top: 15px;	
+		}
+
+	}
+
+	hr{
+	    margin-top: 20px !important;
+	    margin-bottom: 15px !important;
+	}
+
+	.category{
+		background-color: $lightGrey;
+		padding: 7px 8px;
+		margin-right: 7px;
+		margin-top: 7px;
+		display: inline-block;
+		@include border-radius(4px);
+		@include lightFont(13px,$fontBlack,400);		
+	}
+
+	.readMore{
+		@include btns(4px,$blue,0px,white,$blue);
+		@include hoverTransition(background-color,0.15s);		
+		border-bottom: 2px solid darken($blue, 10%);
+		height: 40px;
+		line-height: 2;
+		
+		&:hover, &:focus, &:active{
+			background-color: darken($blue, 10%);
+			border-bottom: 2px solid darken($blue, 20%);
+		}		
+	}
+
+}
+
+#allProducts{
+	margin-bottom: 20px;
+}
+
+#root{
+	padding-bottom: 50px;
+}
+
+#footerContainer{
+	@include mainFont(15px,$fontGrey,400);
+	background-color: $darkGrey;
+	padding: 0px 15px;	
+	height: 50px;
+	line-height: 50px;	
+
+	@include media(0px,400px){
+		padding: 0px;
+		@include mainFont(13.5px,$fontGrey,400);
+	}
+
+	a{
+		@include links($fontGrey,white);
+		display: inline-block;		
+	}
+
+	p{
+		margin-bottom: 0px;
+	}
+}
