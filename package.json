@@ -1,0 +1,32 @@
+{
+  "name": "xml-parser",
+  "version": "1.0.0",
+  "description": "This is a single page application that will allow users to submit a URL of a product feed. Default URL is:",
+  "main": "karma.conf.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "karma": "~0.12",
+    "karma-mocha": "*", 
+    "karma-chai": "*", 
+    "karma-cli": "*",
+    "karma-coverage": "*",
+    "karma-firefox-launcher": "*", 
+    "karma-chrome-launcher": "*",
+    "karma-htmlfile-reporter": "*"
+  },
+  "scripts": {
+    "test": "karma start karma.conf.js --single-run --browsers Firefox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImanSedighi/XML-parser.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ImanSedighi/XML-parser/issues"
+  },
+  "homepage": "https://github.com/ImanSedighi/XML-parser#readme"
+}
