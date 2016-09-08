@@ -2,7 +2,7 @@
 
 This is a single page application that will allow users to submit a URL of a product feed. Default URL is: 
 
-http://pf.tradetracker.net/?aid=1&type=xml&encoding=utf-8&fid=251713&categoryType=2&additionalType=2&limit=10
+https://s3-ap-southeast-1.amazonaws.com/theincitement.com/exam/productfeed.xml
 
 
 On submitting the form, the URL should be processed by back-end extracting following properties from each feed entry:

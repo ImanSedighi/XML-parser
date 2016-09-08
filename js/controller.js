@@ -4,7 +4,7 @@
 	$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
 	$scope.message; //it keeps the error messages we get from our api or we generate in client side. We can show the error messages by calling showerror() function.
 	$scope.products = []; //it keeps all of the products data which we fetch from server
-	$scope.feedURL = "";
+	$scope.feedURL = "https://s3-ap-southeast-1.amazonaws.com/theincitement.com/exam/productfeed.xml";
 
 	$scope.submitFeed = function(){ //this function submits user's inserted feeds url to server and fetch the data if there is any
 		if($scope.feedURL != ""){
