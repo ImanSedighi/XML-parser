@@ -31,7 +31,7 @@ describe("Main test suite", function() {
 
     it("Check initial value of feedURL", function() {
       controller = createController();
-      expect($rootScope.feedURL).to.equal('http://s3-ap-southeast-1.amazonaws.com/theincitement.com/exam/productfeed.xml');
+      expect($rootScope.feedURL).to.equal('https://s3-ap-southeast-1.amazonaws.com/theincitement.com/exam/productfeed.xml');
     });
 
     it("Check on page load, products array is exists and its empty", function() {
